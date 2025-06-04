@@ -14,7 +14,7 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.settings = Settings()
 
-        self.screen = self.settings.screen_settings(True)
+        self.screen = self.settings.screen_settings()
         pygame.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self)
@@ -26,6 +26,13 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+
+            # Get rid of bullets that have disappeared.
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+            print(len(self.bullets))
+
             self._update_screen()
             self.clock.tick(60)
     
