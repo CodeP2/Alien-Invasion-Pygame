@@ -21,6 +21,8 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
+
+        self._create_fleet()
     
     def run_game(self):
         """Start main loop for the game."""
@@ -73,8 +75,13 @@ class AlienInvasion:
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
-                self.bullets.remove(bullet)
+                self.bullets.remove(bullet)    
 
+    def _create_fleet(self):
+        """Create the fleet of aliens."""
+        # Make an alien.
+        alien = Alien(self)
+        self.aliens.add(alien)
     
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
@@ -82,6 +89,7 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.ship.blitime()
+        self.aliens.draw(self.screen)
 
         pygame.display.flip()
 
