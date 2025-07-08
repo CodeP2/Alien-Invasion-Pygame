@@ -29,7 +29,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self._update_bullet()
+            self._update_bullets()
             self._update_aliens()
             self._update_screen()
             self.clock.tick(60)
@@ -68,7 +68,7 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
     
-    def _update_bullet(self):
+    def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
         # Update bullet positions.
         self.bullets.update()
@@ -76,7 +76,16 @@ class AlienInvasion:
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
-                self.bullets.remove(bullet)    
+                self.bullets.remove(bullet)
+
+        # Check for any bullets that have hit aliens.
+        # if so, get rid of the bullet and the alien.
+        collisions = pygame.sprite.groupcollide(
+            self.bullets, self.aliens, True, True)
+        if not self.aliens:
+            # Destroy existing bullets and create new fleet.
+            self.bullets.empty()
+            self._create_fleet()
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
@@ -120,12 +129,6 @@ class AlienInvasion:
         """Check if the fleet is at an edge, then update positions."""
         self._check_fleet_edges()
         self.aliens.update()
-
-        # Check for any bullets that have hit aliens.
-        # if so, get rid of the bullet and the alien.
-        collisions = pygame.sprite.groupcollide(
-            self.bullets, self.aliens, True, True
-        )
     
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
