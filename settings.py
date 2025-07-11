@@ -46,3 +46,9 @@ class Settings:
         
     def initilize_dynamic_settings(self):
         """Initilize settings that change throghout the game."""
+        self.ship_speed = 1.5
+        self.bullet_speed = 2.5
+        self.alien_speed = 1.0
+
+        # fleet_direction of 1 represent right; -1 represents left.
+        self.fleet_direction = 1
