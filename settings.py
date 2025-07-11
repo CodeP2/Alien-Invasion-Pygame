@@ -5,7 +5,7 @@ class Settings:
     """A class to store all settings for Alien Invasion."""
 
     def __init__(self):
-        """Initialize the game's settings."""
+        """Initialize the game's static settings."""
         # Screen settings
         self.screen_width = 1200
         self.screen_height = 800
@@ -27,6 +27,11 @@ class Settings:
         self.fleet_drop_speed = 10
         # fleet_direction of 1 represent right; -1 represent left.
         self.fleet_direction = 1
+
+        # How quickly the game speeds up
+        self.speedup_scale = 1.1
+
+        self.initilize_dynamic_settings()
     
     def screen_settings(self, full_screen=False):
         """Setting controling the game screen."""
@@ -38,3 +43,6 @@ class Settings:
         else:
             return pygame.display.set_mode(
                                         (self.screen_width, self.screen_height))
+        
+    def initilize_dynamic_settings(self):
+        """Initilize settings that change throghout the game."""
