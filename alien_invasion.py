@@ -219,6 +219,9 @@ class AlienInvasion:
         self.ship.blitime()
         self.aliens.draw(self.screen)
 
+        # Draw the score information.
+        self.sb.show_score()
+
         # Draw the play button if the game is inactive.
         if not self.game_active:
             self.play_button.draw_button()
