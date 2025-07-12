@@ -8,6 +8,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 
 
@@ -23,8 +24,10 @@ class AlienInvasion:
         self.screen = self.settings.screen_settings()
         pygame.display.set_caption("Alien Invasion")
 
-        # Create an instance to store game statistics.
+        # Create an instance to store game statistics,
+        # And create a scoreboard.
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
