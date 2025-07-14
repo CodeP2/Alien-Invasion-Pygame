@@ -15,8 +15,9 @@ class Scoreboard:
         self.text_color = (30, 30, 30)
         self.font = pygame.font.SysFont(None, 48)
 
-        # prepare the initial score image.
+        # prepare the initial score images.
         self.prep_score()
+        self.prep_high_score()
 
     def prep_score(self):
         """Turn the score into a rendered image."""
@@ -29,6 +30,10 @@ class Scoreboard:
         self.score_rect = self.score_image.get_rect()
         self.score_rect.right = self.screen_rect.right - 20
         self.score_rect.top = 20
+    
+    def prep_high_score(self):
+        """Trun the high score into a rendered image."""
+        pass
     
     def show_score(self):
         """Draw score to the screen."""
