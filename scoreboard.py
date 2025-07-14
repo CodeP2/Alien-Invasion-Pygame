@@ -43,6 +43,10 @@ class Scoreboard:
         self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.score_rect.top
     
+    def check_high_score(self):
+        """Check to see if there's a new high score."""
+        pass
+    
     def show_score(self):
         """Draw score to the screen."""
         self.screen.blit(self.score_image, self.score_rect)
