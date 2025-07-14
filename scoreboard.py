@@ -18,6 +18,7 @@ class Scoreboard:
         # prepare the initial score images.
         self.prep_score()
         self.prep_high_score()
+        self.prep_level()
 
     def prep_score(self):
         """Turn the score into a rendered image."""
@@ -48,6 +49,10 @@ class Scoreboard:
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
             self.prep_high_score()
+    
+    def prep_level(self):
+        """Turn the level into a rendered image."""
+        pass
     
     def show_score(self):
         """Draw score to the screen."""
